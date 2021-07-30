@@ -7,7 +7,7 @@ def test_guest_see_button_text(browser):
     time.sleep(5)
     button = len(browser.find_elements_by_class_name("btn-primary")) # Измереям найден объект.
     assert button > 0, "I can't find button" # На осовое того, что измерили объект выводим асерт, если значение < 0.
-    time.sleep(10)
+    time.sleep(5)
 
 """Для запуска тест через комнадную строку, необходимо использовать 
     pytest -v --tb=line --language=en test_main_page.py 
