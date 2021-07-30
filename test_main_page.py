@@ -9,4 +9,6 @@ def test_guest_see_button_text(browser):
     assert button > 0, "I can't find button" # На осовое того, что измерили объект выводим асерт, если значение < 0.
     time.sleep(10)
 
-"""Для запуска тест через комнадную строку, необходимо использовать pytest --language=es test_items.py"""
+"""Для запуска тест через комнадную строку, необходимо использовать 
+    pytest -v --tb=line --language=en test_main_page.py 
+    '--tb=line' указывает, что нужно выводить только одну строку из лога каждого упавшего теста"""
