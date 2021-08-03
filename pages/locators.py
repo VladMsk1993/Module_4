@@ -12,5 +12,9 @@ class LoginPageLocators():
 
 class ProductPageLocators():
     BASKET_BUTTON = (By.CSS_SELECTOR, "#add_to_basket_form")
-    PRICE = (By.XPATH, "//strong[text() = '£9.99']")
+    PRICE = (By.XPATH, "// *[ @ id = \"content_inner\"] / article / div[1] / div[2] / p[1]")
+    BASKET_PRICE = (By.XPATH, "// *[ @ id = \"messages\"] / div[3] / div / p[1] / strong")
     PRODUCT = (By.XPATH, "//strong[text() = \"The shellcoder's handbook\"]")
+    MESSAGE_PRODUCT = (By.XPATH, "//*[@id=\"messages\"]/div[1]/div/strong")
+    PRODUCT = (By.XPATH, "//*[@id=\"content_inner\"]/article/div[1]/div[2]/h1")
+
