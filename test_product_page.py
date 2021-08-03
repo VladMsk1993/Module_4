@@ -71,7 +71,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
 
 
 
-"""@pytest.mark.parametrize('qparam', ["1","2","3","4","5","6",pytest.param("7", marks=pytest.mark.xfail),"8","9"])
+@pytest.mark.parametrize('qparam', ["1","2","3","4","5","6",pytest.param("7", marks=pytest.mark.xfail),"8","9"])
 #Добавил параметрезацию с пропуском одного параметра (в котором баг)
 def test_guest_can_add_product_to_basket(browser, qparam):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{qparam}"
@@ -81,4 +81,4 @@ def test_guest_can_add_product_to_basket(browser, qparam):
     page.solve_quiz_and_get_code()
     page.should_see_message_product_is_added()
     page.should_see_price()
-    time.sleep(0)"""
+    time.sleep(0)
