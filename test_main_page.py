@@ -18,7 +18,7 @@ def test_guest_should_see_login_link(browser):
     link = link1
     page = MainPage(browser, link)
     page.open()
-    page.should_be_login_link()
+    page.should_be_login_link() # выполняет метод со страницы main_page (should_be_login_link).
 
 
 def test_guest_should_see_login_url(browser):
