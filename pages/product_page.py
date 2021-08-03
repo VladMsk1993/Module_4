@@ -24,3 +24,16 @@ class ProductPage(BasePage):
         first_element = self.browser.find_element(*ProductPageLocators.MESSAGE_PRODUCT)
         second_element = self.browser.find_element(*ProductPageLocators.PRODUCT)
         assert first_element.text == second_element.text, "There's wrong product or there's not product at all."
+
+    def should_not_be_success_message_on_product_page(self):
+        self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE)
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+        "Success message is presented"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+        "Success message is presented"
+
+    def should_message_disappeared(self):
+        self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE)
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Message isn't disappeared."
