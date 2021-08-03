@@ -16,7 +16,11 @@ class ProductPage(BasePage):
         assert substring in current_url, "Guest is on wrong page."
 
     def should_see_price(self):
-        assert self.is_element_present(*ProductPageLocators.PRICE), "There's wrong price or there's not price at all."
+        price = self.browser.find_element(*ProductPageLocators.PRICE)
+        basket_price = self.browser.find_element(*ProductPageLocators.BASKET_PRICE)
+        assert price.text == basket_price.text, "There's wrong price or there's not price at all."
 
     def should_see_message_product_is_added(self):
-        assert self.is_element_present(*ProductPageLocators.PRODUCT), "There's wrong product or there's not product at all."
+        first_element = self.browser.find_element(*ProductPageLocators.MESSAGE_PRODUCT)
+        second_element = self.browser.find_element(*ProductPageLocators.PRODUCT)
+        assert first_element.text == second_element.text, "There's wrong product or there's not product at all."
