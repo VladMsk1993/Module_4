@@ -1,8 +1,7 @@
 from selenium.webdriver.common.by import By
 
 
-class MainPageLocators():
-    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link") #Добавили кортеж из двух значений.
+#class MainPageLocators():
 
 
 class LoginPageLocators():
@@ -18,3 +17,7 @@ class ProductPageLocators():
     MESSAGE_PRODUCT = (By.XPATH, "//*[@id=\"messages\"]/div[1]/div/strong")
     SUCCESS_MESSAGE = (By.XPATH, "//*[@id=\"messages\"]/div[1]/div")
     PRODUCT = (By.XPATH, "//*[@id=\"content_inner\"]/article/div[1]/div[2]/h1")
+
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")  # Добавили кортеж из двух значений.
