@@ -21,3 +21,9 @@ class ProductPageLocators():
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")  # Добавили кортеж из двух значений.
+    BASKET_BUTTON = (By.XPATH, "//*[@id=\"default\"]/header/div[1]/div/div[2]/span/a")
+
+
+class BasketPageLocators():
+    EMPTY_BASKET = (By.CSS_SELECTOR, "#default > div.container-fluid.page > div > div.content")
+    BASKET_ITEMS = (By.CSS_SELECTOR, "#basket_formset > div:nth-child(n)")
