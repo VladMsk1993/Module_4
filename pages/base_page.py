@@ -20,9 +20,10 @@ class BasePage():
         self.browser.get(self.url)
 
     def go_to_login_page(self):
-        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
-        login_link.click()
+        self.browser.find_element(*BasePageLocators.LOGIN_LINK).click()
 
+    def go_to_basket_page(self):
+        self.browser.find_element(*BasePageLocators.BASKET_BUTTON).click()
 
     def should_be_login_link(self):
         # Cимвол *, он указывает на то, что мы передали именно пару, и этот кортеж нужно распаковать.
