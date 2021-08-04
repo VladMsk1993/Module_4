@@ -3,12 +3,13 @@ from .pages.locators import ProductPageLocators
 from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 from .pages.base_page import BasePage
+from .pages.basket_page import BasketPage
 import pytest
 
 
 link_product_page = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
 link_product_page_2 = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
-
+link_main_page = "https://selenium1py.pythonanywhere.com/"
 
 def test_guest_can_add_product_into_basket(browser):
     link = link_product_page
@@ -85,6 +86,15 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_url()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = link_main_page
+    page = BasketPage(browser, link)
+    page.open()
+    page.go_to_basket_page()
+    page.basket_should_be_empty()
+    page.should_be_text_basket_is_empty()
 
 
 @pytest.mark.parametrize('qparam', ["1","2","3","4","5","6",pytest.param("7", marks=pytest.mark.xfail),"8","9"])
