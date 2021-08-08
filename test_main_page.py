@@ -16,7 +16,7 @@ class TestLoginFromMainPage():
         page.open()                      # открываем страницу
         page.go_to_login_page()          # выполняем метод страницы — переходим на страницу логина
         login_page = LoginPage(browser, browser.current_url) # Делаю инициализацию LoginPage
-        login_page.should_be_login_url() # Проверяю, что мы на нужной нам странице.
+        login_page.should_be_login_page() # Проверяю, что мы на нужной нам странице.
 
     def test_guest_should_see_login_link(self, browser):
         link = link_main_page
