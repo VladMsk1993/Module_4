@@ -39,17 +39,15 @@ class TestUserAddToBasketFromProductPage():
         page = LoginPage(browser, link)
         page.open()
         page.register_new_user(email, password)
-        page.should_not_be_error_message()
-        page.should_be_user_login_message()
+        page.should_be_authorized_user()
 
     def test_user_cant_see_success_message(self, browser):
         link = link_product_page
         page = ProductPage(browser, link)
         page.open()
         page.should_not_be_success_message()
-        page.should_be_authorized_user()
 
-    def test_user_can_add_product_into_basket(self, browser):
+    def test_user_can_add_product_to_basket(self, browser):
         link = link_product_page
         page = ProductPage(browser, link)
         page.open()
@@ -94,6 +92,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = link_product_page_2
     page = ProductPage(browser, link)
@@ -103,6 +102,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login_page.should_be_login_url()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = link_main_page
     page = BasketPage(browser, link)
@@ -112,6 +112,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.should_be_text_basket_is_empty()
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize('qparam', ["1","2","3","4","5","6",pytest.param("7", marks=pytest.mark.xfail),"8","9"])
 #Добавил параметрезацию с пропуском одного параметра (в котором баг)
 def test_guest_can_add_product_to_basket(browser, qparam):
