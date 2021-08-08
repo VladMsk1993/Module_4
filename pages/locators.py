@@ -31,6 +31,7 @@ class BasketPageLocators():
     EMPTY_BASKET = (By.CSS_SELECTOR, "#default > div.container-fluid.page > div > div.content")
     BASKET_ITEMS = (By.CSS_SELECTOR, "#basket_formset > div:nth-child(n)")
 
+
 class FixturePageLocators():
     EMAIL = (By.XPATH, "//*[@id=\"id_registration-email\"]")
     PASSWORD1 = (By.XPATH, "//*[@id=\"id_registration-password1\"]")
