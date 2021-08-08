@@ -1,5 +1,5 @@
 import time
-from .pages.locators import ProductPageLocators
+from .pages.locators import ProductPageLocators, FixturePageLocators
 from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 from .pages.base_page import BasePage
@@ -10,14 +10,7 @@ import pytest
 link_product_page = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
 link_product_page_2 = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
 link_main_page = "https://selenium1py.pythonanywhere.com/"
-
-def test_guest_can_add_product_into_basket(browser):
-    link = link_product_page
-    page = ProductPage(browser, link)
-    page.open()
-    page.should_be_button_to_add_to_basket()
-    page.solve_quiz_and_get_code()
-    #time.sleep(300)
+login_link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
 
 
 def test_guest_see_product_page(browser):
@@ -36,13 +29,33 @@ def test_guest_see_price(browser):
     page.should_see_price()
 
 
-def test_guest_see_message_product_is_added(browser):
-    link = link_product_page
-    page = ProductPage(browser, link)
-    page.open()
-    page.should_be_button_to_add_to_basket()
-    page.solve_quiz_and_get_code()
-    page.should_see_message_product_is_added()
+@pytest.mark.need_review
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        email = str(time.time()) + "@fakemail.org"
+        password = "ewqrsxdgse3242"
+        link = "http://selenium1py.pythonanywhere.com/accounts/login/"
+        page = LoginPage(browser, link)
+        page.open()
+        page.register_new_user(email, password)
+        page.should_not_be_error_message()
+        page.should_be_user_login_message()
+
+    def test_user_cant_see_success_message(self, browser):
+        link = link_product_page
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()
+        page.should_be_authorized_user()
+
+    def test_user_can_add_product_into_basket(self, browser):
+        link = link_product_page
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_button_to_add_to_basket()
+        page.solve_quiz_and_get_code()
+        page.should_be_authorized_user()
 
 
 @pytest.mark.xfail(reason="Because this logic isn't released here yet.")
@@ -55,11 +68,13 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.should_not_be_success_message_on_product_page()
 
 
-def test_guest_cant_see_success_message(browser):
+def test_guest_see_message_product_is_added(browser):
     link = link_product_page
     page = ProductPage(browser, link)
     page.open()
-    page.should_not_be_success_message()
+    page.should_be_button_to_add_to_basket()
+    page.solve_quiz_and_get_code()
+    page.should_see_message_product_is_added()
 
 
 @pytest.mark.xfail(reason="Because this logic isn't released here yet.")
