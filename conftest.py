@@ -2,7 +2,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 import pytest
 
-"""Передача параметров через командную строку с помощью встроенной функции pytest_addoption и фикстуры request."""
 
 def pytest_addoption(parser):
     parser.addoption('--language', action='store', default="en")
